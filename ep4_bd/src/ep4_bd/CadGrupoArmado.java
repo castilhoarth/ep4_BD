@@ -59,16 +59,17 @@ public class CadGrupoArmado extends JFrame {
 		contentPane.add(lblNome);
 		
 		txtNomeGrupo = new JTextField();
-		txtNomeGrupo.setColumns(10);
 		txtNomeGrupo.setBounds(116, 44, 86, 20);
+		txtNomeGrupo.setColumns(10);
 		contentPane.add(txtNomeGrupo);
 		
 		txtCodigoG = new JTextField();
-		txtCodigoG.setColumns(10);
 		txtCodigoG.setBounds(116, 11, 86, 20);
+		txtCodigoG.setColumns(10);
 		contentPane.add(txtCodigoG);
 		
 		JButton button = new JButton("Inserir");
+		button.setBounds(10, 125, 89, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int opcao;
@@ -100,8 +101,6 @@ public class CadGrupoArmado extends JFrame {
 
 			}
 		});
-		button.setBounds(10, 125, 89, 23);
 		contentPane.add(button);
 	}
-
 }
