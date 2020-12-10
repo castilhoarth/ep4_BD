@@ -1,9 +1,9 @@
-package database;
+package ep4_bd;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
 
-public class Main {
+public class classegenericaconexao {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
