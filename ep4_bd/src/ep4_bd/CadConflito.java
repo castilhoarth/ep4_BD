@@ -108,12 +108,12 @@ public class CadConflito extends JFrame {
 						Connection con;
 						String userName = "root";
 						String password = "";
-						String url = "jdbc:mysql://127.0.0.1/bd_teste";
+						String url = "jdbc:mysql://127.0.0.1/bd_teste?useTimezone=true&serverTimezone=UTC";
 						
-						Class.forName("com.mysql.jdbc.Driver").newInstance();
+						Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 						con = DriverManager.getConnection(url, userName, password);
 						Statement st = con.createStatement();
-						st.executeUpdate("INSERT INTO conflito (codigo, nome, cod_pais, n_mortos, n_feridos) VALUES ('"+txtCod.getText()+"','"+txtNome.getText()+"','"+txtCodPais.getText()+"','"+txtNMortos.getText()+"','"+txtNFeridos.getText()+"','"+txtNMortos.getText()+"')");
+						st.executeUpdate("INSERT INTO conflito (codigo, nome, cod_pais, n_mortos, n_feridos) VALUES ('"+txtCod.getText()+"','"+txtNome.getText()+"','"+txtCodPais.getText()+"','"+txtNMortos.getText()+"','"+txtNFeridos.getText()+"')");
 						
 						st.close();
 						con.close();
@@ -126,7 +126,7 @@ public class CadConflito extends JFrame {
 						txtNMortos.setText("");
 					}
 					catch(Exception event){
-						JOptionPane.showMessageDialog(null, "Conexão não estabelecida", ""+event, JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Conexão não estabelecida"+event, ""+event, JOptionPane.ERROR_MESSAGE);
 					}
 		        }
 			}
