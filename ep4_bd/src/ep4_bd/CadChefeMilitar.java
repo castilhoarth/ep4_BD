@@ -6,9 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -16,12 +16,11 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
-public class CadLiderPolitico extends JFrame {
+public class CadChefeMilitar extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtNomeL;
-	private JTextField txtApoios;
-	private JTextField txtCodGrupoArmado;
+	private JTextField txtFaixa;
+	private JTextField txtcodigoChef;
 
 	/**
 	 * Launch the application.
@@ -30,7 +29,7 @@ public class CadLiderPolitico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadLiderPolitico frame = new CadLiderPolitico();
+					CadChefeMilitar frame = new CadChefeMilitar();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,8 +41,8 @@ public class CadLiderPolitico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadLiderPolitico() {
-		setTitle("Cadastro de L\u00EDder Pol\u00EDtico");
+	public CadChefeMilitar() {
+		setTitle("Cadastro de Chefe Militar");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -51,32 +50,23 @@ public class CadLiderPolitico extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNomeL = new JLabel("Nome L\u00EDder");
-		lblNomeL.setBounds(10, 25, 53, 14);
-		contentPane.add(lblNomeL);
+		txtFaixa = new JTextField();
+		txtFaixa.setColumns(10);
+		txtFaixa.setBounds(116, 54, 86, 20);
+		contentPane.add(txtFaixa);
 		
-		JLabel lblApoios = new JLabel("Apoios");
-		lblApoios.setBounds(10, 58, 46, 14);
-		contentPane.add(lblApoios);
+		txtcodigoChef = new JTextField();
+		txtcodigoChef.setColumns(10);
+		txtcodigoChef.setBounds(116, 21, 86, 20);
+		contentPane.add(txtcodigoChef);
 		
-		JLabel lblCodGrupoArmado = new JLabel("C\u00F3d. Grupo Armado");
-		lblCodGrupoArmado.setBounds(10, 93, 95, 14);
-		contentPane.add(lblCodGrupoArmado);
+		JLabel lblCdChefe = new JLabel("C\u00F3d. Chefe");
+		lblCdChefe.setBounds(10, 24, 55, 14);
+		contentPane.add(lblCdChefe);
 		
-		txtNomeL = new JTextField();
-		txtNomeL.setBounds(116, 22, 86, 20);
-		contentPane.add(txtNomeL);
-		txtNomeL.setColumns(10);
-		
-		txtApoios = new JTextField();
-		txtApoios.setBounds(116, 55, 86, 20);
-		contentPane.add(txtApoios);
-		txtApoios.setColumns(10);
-		
-		txtCodGrupoArmado = new JTextField();
-		txtCodGrupoArmado.setBounds(116, 90, 86, 20);
-		contentPane.add(txtCodGrupoArmado);
-		txtCodGrupoArmado.setColumns(10);
+		JLabel lblFaixa = new JLabel("Faixa");
+		lblFaixa.setBounds(10, 57, 46, 14);
+		contentPane.add(lblFaixa);
 		
 		JButton button = new JButton("Inserir");
 		button.addActionListener(new ActionListener() {
@@ -94,15 +84,14 @@ public class CadLiderPolitico extends JFrame {
 						Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 						con = DriverManager.getConnection(url, userName, password);
 						Statement st = con.createStatement();
-						st.executeUpdate("INSERT INTO lider_politico (nome, apoios , grupo_armado_fk) VALUES ('"+txtNomeL.getText()+"','"+txtApoios.getText()+"','"+txtCodGrupoArmado.getText()+"')");
+						st.executeUpdate("INSERT INTO chefe_militar (codigo_chef, faixa) VALUES ('"+txtcodigoChef.getText()+"','"+txtFaixa.getText()+"')");
 						
 						st.close();
 						con.close();
 						JOptionPane.showMessageDialog(null, "Registro inserido com sucesso!");
 						
-						txtNomeL.setText("");
-						txtApoios.setText("");
-						txtCodGrupoArmado.setText("");
+						txtcodigoChef.setText("");
+						txtFaixa.setText("");
 					}
 					catch(Exception event){
 						JOptionPane.showMessageDialog(null, "Conexão não estabelecida"+event, ""+event, JOptionPane.ERROR_MESSAGE);
@@ -110,7 +99,8 @@ public class CadLiderPolitico extends JFrame {
 		        }
 			}
 		});
-		button.setBounds(10, 136, 89, 23);
+		button.setBounds(10, 135, 89, 23);
 		contentPane.add(button);
 	}
+
 }
